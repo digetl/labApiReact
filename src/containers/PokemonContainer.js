@@ -1,4 +1,5 @@
 import React from "react";
+import Header from "../components/Header";
 import PokemonSelect from "../components/PokemonSelect";
 import PokemonDetail from "../components/PokemonDetail";
 
@@ -16,14 +17,13 @@ class PokemonContainer extends React.Component {
   }
 
   componentDidMount(){
-    const url = "http://pokeapi.co/api/v2/pokemon/?limit=40";
+    const url = "http://pokeapi.co/api/v2/pokemon/?limit=964";
     fetch(url)
       .then(res => res.json())
       .then(data => this.setState({pokemons: data.results}))
   }
 
   handlePokemonSelected(name){
-    // if(!name) return;
 
     const selectedPokemon = this.state.pokemons.find(pokemon => {
       return pokemon.name === name;
@@ -39,6 +39,8 @@ class PokemonContainer extends React.Component {
 
     return (
       <div>
+        <Header />
+
         <PokemonSelect 
           pokemons={this.state.pokemons}
           onPokemonSelected={this.handlePokemonSelected}
